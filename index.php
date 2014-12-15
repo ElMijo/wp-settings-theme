@@ -18,7 +18,10 @@
 define("WPST_DIR", dirname( __file__));
 define("WPST_DOMAIN", "wpsettingstheme");
 
+include_once WPST_DIR."/src/wp-settings-theme-section-base.php";
 include_once WPST_DIR."/src/wp-settings-theme-base.php";
+include_once WPST_DIR."/src/field/wp-settings-theme-field.php";
+include_once WPST_DIR."/src/field/wp-settings-theme-text-field.php";
 include_once WPST_DIR."/src/wp-settings-theme-admin.php";
 // include_once WPST_DIR."/src/wp-settings-theme.php";
 
@@ -26,55 +29,55 @@ include_once WPST_DIR."/src/wp-settings-theme-admin.php";
 /**
  * Register the settings to use on the theme options page
  */
-add_action( 'admin_init', 'pu_register_settings' );
+// add_action( 'admin_init', 'pu_register_settings' );
 
 /**
  * Function to register the settings
  */
-function pu_register_settings()
-{
-    // Register the settings with Validation callback
-    register_setting( 'pu_theme_options', 'pu_theme_options', 'pu_validate_settings' );
+// function pu_register_settings()
+// {
+//     // Register the settings with Validation callback
+//     register_setting( 'pu_theme_options', 'pu_theme_options', 'pu_validate_settings' );
 
-    // Add settings section
-    add_settings_section( 'pu_text_section', 'Text box Title', 'pu_display_section', 'pu_theme_options.php' );
+//     // Add settings section
+//     add_settings_section( 'pu_text_section', 'Text box Title', 'pu_display_section', 'pu_theme_options.php' );
 
-    // Create textbox field
-    $field_args = array(
-      'type'      => 'text',
-      'id'        => 'pu_textbox',
-      'name'      => 'pu_textbox',
-      'desc'      => 'Example of textbox description',
-      'std'       => '',
-      'label_for' => 'pu_textbox',
-      'class'     => 'css_class'
-    );
+//     // Create textbox field
+//     $field_args = array(
+//       'type'      => 'text',
+//       'id'        => 'pu_textbox',
+//       'name'      => 'pu_textbox',
+//       'desc'      => 'Example of textbox description',
+//       'std'       => '',
+//       'label_for' => 'pu_textbox',
+//       'class'     => 'css_class'
+//     );
 
-    add_settings_field( 'example_textbox', 'Example Textbox', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
-    add_settings_field( 'example_textbox2', 'Example Textbox2', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
-}
+//     add_settings_field( 'example_textbox', 'Example Textbox', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+//     add_settings_field( 'example_textbox2', 'Example Textbox2', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+// }
 
-function pu_display_section($section)
-{ 
-    var_dump($section);
-}
-function pu_display_setting($args)
-{
-    extract( $args );
+// function pu_display_section($section)
+// { 
+//     var_dump($section);
+// }
+// function pu_display_setting($args)
+// {
+//     extract( $args );
 
-    $option_name = 'pu_theme_options';
+//     $option_name = 'pu_theme_options';
 
-    $options = get_option( $option_name );
+//     $options = get_option( $option_name );
 
-    switch ( $type ) {  
-          case 'text':  
-              $options[$id] = stripslashes($options[$id]);  
-              $options[$id] = esc_attr( $options[$id]);  
-              echo "<input class='regular-text$class' type='text' id='$id' name='" . $option_name . "[$id]' value='$options[$id]' />";  
-              echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";  
-          break;  
-    }
-}
+//     switch ( $type ) {  
+//           case 'text':  
+//               $options[$id] = stripslashes($options[$id]);  
+//               $options[$id] = esc_attr( $options[$id]);  
+//               echo "<input class='regular-text$class' type='text' id='$id' name='" . $option_name . "[$id]' value='$options[$id]' />";  
+//               echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";  
+//           break;  
+//     }
+// }
 
 
 /*

@@ -35,7 +35,6 @@ class WPSettingsThemeAdmin
         //add_action( 'init', 'ilc_admin_init' );
         add_action( 'admin_menu', array($this,'settings_page_init') );
         $this->theme_data = wp_get_theme();
-        //__( 'Some text to translate and display.', WPSTDOMAIN )
         $this->theme_page_data = array(
             "page_title" => __(sprintf('%s Theme Settings',$this->theme_data->get('Name')),WPSTDOMAIN),
             "menu_title" => __("Settings",WPSTDOMAIN),
